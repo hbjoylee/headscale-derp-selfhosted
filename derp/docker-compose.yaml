@@ -1,0 +1,17 @@
+services:
+  derp:
+    image: derp
+    container_name: derp
+    ports:
+      - 3478:3478/udp
+      - 3478:3478/tcp
+    environment:
+      - DERP_DOMAIN=derp.abc.xyz
+    volumes:
+      - /var/run/tailscale/tailscaled.sock:/var/run/tailscale/tailscaled.sock
+    networks:
+      caddy:
+
+networks:
+  caddy:
+    external: true
