@@ -19,6 +19,15 @@
 
 `docker network create caddy`
 
+# Caddy
+
+DERP, Headscale and Headscale all open 8080 port in this setup, you need change port in Caddyfile if use different ports.
+
+1. Update url in caddy/Caddyfile
+
+2. Start caddy `docker compose up -d`
+
+
 # DERP node
 
 DERP server only open http port and verify clients to block unauthorized users
@@ -34,6 +43,10 @@ cd derp
 ./build.sh
 docker compose up -d
 ```
+## Check DERP in browser
+
+Open https://derp.abc.xyz, you should see status page.
+
 
 # Headscale and Headscale UI
 
@@ -57,4 +70,24 @@ docker compose up -d
 ## Generate API key
 `docker exec -it headscale headscale apikeys create --expiration 9999d`
 
-# Caddy
+## Login to web ui
+
+Open `https://headscale.abc.xyz/web` in browser, paste api key to **Headsscale API Key** field, then click **Test Server Settings**, if you see green tick, it means you connected to headscale backend successfully.
+
+## Create user in Headscale
+
+Click **User View** in left panel and create user, e.g `hcuser`, once you have new device join, you need assgin user to this device.
+ 
+## Add device
+
+Install tailscale on device then execute command below to join 
+
+`sudo tailscale up  --login-server=https://headscale.abc.xyz`
+
+it retuns link as below:
+
+`https://headscale.abc.xyz/register/nodekey:xxxyyyzzzooommmppp`
+
+You only need copy `xxxyyyzzzooommmppp` and paste to headscale web ui
+
+# Route, forwarding and firewall

@@ -1,0 +1,18 @@
+services:
+  https-proxy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    command: caddy run
+    volumes:
+      - ./caddy:/data/caddy
+      - ./Caddyfile:/srv/Caddyfile
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      caddy:
+
+networks:
+  caddy:
+    external: true

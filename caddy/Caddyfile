@@ -1,0 +1,10 @@
+headscale.abc.xyz {
+	reverse_proxy /web* http://headscale-ui:8080
+	reverse_proxy headscale:8080
+
+}
+
+derp.abc.xyz {
+	reverse_proxy http://derp:8080
+
+}
