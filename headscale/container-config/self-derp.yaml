@@ -1,0 +1,14 @@
+# If you plan to somehow use headscale, please deploy your own DERP infra: https://tailscale.com/kb/1118/custom-derp-servers/
+regions:
+  900:
+    regionid: 900
+    regioncode: custom
+    regionname: my region
+    nodes:
+      - name: self-derp
+        regionid: 900
+        hostname: derp.abc.xyz
+        ipv4: YOUR_PUBLIC_IP
+        stunport: 3478
+        stunonly: false
+        derpport: 443

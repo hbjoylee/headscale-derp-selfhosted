@@ -1,0 +1,22 @@
+services:
+  headscale:
+    container_name: headscale
+    image: headscale/headscale:stable
+    restart: unless-stopped
+    volumes:
+      - ./container-config:/etc/headscale
+      - ./container-data:/var/lib/headscale
+    entrypoint: headscale serve
+    networks:
+      caddy:
+
+  headscale-ui:
+    container_name: headscale-ui
+    image: ghcr.io/gurucomputing/headscale-ui:latest
+    restart: unless-stopped
+    networks:
+      caddy:
+
+networks:
+  caddy:
+    external: true

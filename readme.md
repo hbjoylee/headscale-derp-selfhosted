@@ -35,6 +35,26 @@ cd derp
 docker compose up -d
 ```
 
-# Headscale
+# Headscale and Headscale UI
+
+Update `server_url` in `container-config/config.yaml`
+
+`server_url: https://headscale.abc.xyz`
+
+Update `hostname` and `ipv4` in `container-config/self-derp.yaml`
+
+```
+hostname: derp.abc.xyz
+ipv4: YOUR_PUBLIC_IP
+```
+## Start headscale and UI
+
+```
+cd headscale/
+docker compose up -d
+```
+
+## Generate API key
+`docker exec -it headscale headscale apikeys create --expiration 9999d`
 
 # Caddy
