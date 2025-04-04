@@ -113,7 +113,12 @@ If you have more subnet, command like below:
 
 Approve subnet in headscale ui.
 
-## Firewall
+
+## Firewall (Optional)
+
+After settings above you should be able to access your LAN via device A in your home network.
+
+The firwall setting are optional.
 
 ```
 sudo apt install iptables-persistent
